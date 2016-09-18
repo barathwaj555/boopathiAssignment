@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import com.boopathi.baseclass.Dict;
 import com.boopathi.baseclass.MstCard;
 import com.boopathi.baseclass.Player;
@@ -16,6 +18,8 @@ public class GamePlay {
 	private static List<Dict> playDict = new ArrayList<>();
 	private static boolean isGameOn = true;
 	private static String round = "";
+	private static float value = 0.0f;
+	
 	static 
 	{
 		List<Dict> dict = XMLParcer.parceXML();
@@ -106,7 +110,35 @@ public class GamePlay {
 				}
 				else
 				{
-					// Computer play
+					Dict playCard = null;
+					for (Dict card : p.getCards())
+					{
+						if(card.getNextBiggest(round, value))
+						{
+							playCard = card;
+							break;
+						}
+					} 
+					if(playCard == null)
+					{
+						for (Dict card : p.getCards())
+						{
+							if(card.isTrumpCard())
+							{
+								for (Dict card1 : p.getCards())
+								{
+									
+								}
+							}
+									
+						}
+					}
+					else
+					{
+						System.out.println("Player " + p.getType() + " played " + playCard);
+						p.getCards().remove(playCard);
+					}
+					
 				}
 			}
 		}

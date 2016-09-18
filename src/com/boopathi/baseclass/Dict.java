@@ -17,32 +17,31 @@ public class Dict {
 	}
 
 	
-	public boolean getNextBiggest(String type, String value)
+	public boolean getNextBiggest(String type, float value)
 	{
 		for (MstCard mstCard : cards) 
 		{
 			if(mstCard.getKey().equals(type))
 			{
 				float cardValue = Float.parseFloat(mstCard.getValue());
-				float gotValue = Float.parseFloat(value);
-				if(cardValue > gotValue)
+				if(cardValue > value)
 					return true;
 			}
 		}
 		return false;
 	}
 	
-	public List<MstCard> getTrumpCards()
+	public boolean isTrumpCard()
 	{
 		List<MstCard> trumpCards = new ArrayList<>();
 		for (MstCard mstCard : cards)
 		{
 			if(mstCard.getKey().equals("card_type") && mstCard.getValue().equals("trump"))
 			{
-				trumpCards.add(mstCard);
+				return true;
 			}
 		}
-		return trumpCards;
+		return false;
 	}
 	
 
